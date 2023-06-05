@@ -2,14 +2,13 @@
 
 require 'koneksi.php';
 
-$kuliners = query("SELECT kuliner.id AS id_kuliner, kuliner.id_kategori, kuliner.nama AS nama_kuliner, kuliner.harga AS harga_kuliner, kategori.kategori AS kategori FROM tabel_kuliner AS kuliner INNER JOIN tabel_kategori AS kategori ON kuliner.id_kategori = kategori.id ORDER BY kuliner.nama ASC");
-
 $kategories = query("SELECT id AS id_kategori, kategori FROM tabel_kategori ORDER BY kategori ASC");
 
 $users = query("SELECT * FROM tabel_user");
 $infoweb = query("SELECT * FROM tabel_info_web");
 
-$jlh_kuliner = count($kuliners);
+$getKuliner = query("SELECT id FROM tabel_kuliner");
+$jlh_kuliner = count($getKuliner);
 $jlh_kategori = count($kategories);
 $jlh_user = count($users);
 $jlh_info = count($infoweb);
@@ -453,38 +452,13 @@ $jlh_info = count($infoweb);
 
           <div class="row">
             <div class="col-lg-8">
-              <!-- Basic Card Example -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Daftar Kuliner</h6>
+              <!-- Default Card Example -->
+              <div class="card mb-4">
+                <div class="card-header">
+                  INFORMASI WEBSITE
                 </div>
-                <div class="card-body p-0">
-                  <table cellpadding="5" width="100%">
-                    <tr class="bg-primary text-white">
-                      <th style="text-align: center;">No</th>
-                      <th>Nama Kuliner</th>
-                      <th>Kategori</th>
-                      <th style="padding: 0 25px 0 25px;">Harga</th>
-                    </tr>
-                    <?php
-                    $no = 1;
-                     
-                    if($jlh_kuliner == 0) : ?>
-                    <tr>
-                      <td colspan="4" class="text-center">Data Not Available</td>
-                    </tr>
-                    <?php else: ?>
-                    <?php foreach( $kuliners as $kuliner): ?>
-                    <tr>
-                      <td class="text-center font-weight-bold"><?= $no; ?></td>
-                      <td style="padding: 6px 50px 6px 10px;"><?= $kuliner["nama_kuliner"]; ?></td>
-                      <td style="padding: 6px 50px 6px 10px;"><?= $kuliner["kategori"]; ?></td>
-                      <td style="padding: 0 25px 0 25px;">Rp <?= $kuliner["harga_kuliner"]; ?></td>
-                    </tr>
-                    <?php $no++; ?>
-                    <?php endforeach; ?>
-                    <?php endif; ?>
-                  </table>
+                <div class="card-body">
+                  <?= $infoweb[0]["deskripsi_web"]; ?>
                 </div>
               </div>
             </div>
@@ -521,19 +495,47 @@ $jlh_info = count($infoweb);
           </div>
 
           <div class="row">
-            <div class="col-lg">
-              <!-- Default Card Example -->
-              <div class="card mb-4">
-                <div class="card-header">
-                  INFORMASI WEBSITE
+            <?php foreach($kategories AS $kate) : ?>
+            <?php
+              $identifier = $kate['id_kategori'];
+              $kuliners = query("SELECT kuliner.id AS id_kuliner, kuliner.id_kategori, kuliner.nama AS nama_kuliner, kuliner.harga AS harga_kuliner, kategori.kategori AS kategori FROM tabel_kuliner AS kuliner INNER JOIN tabel_kategori AS kategori ON kuliner.id_kategori = kategori.id WHERE kuliner.id_kategori = $identifier ORDER BY kuliner.nama ASC");
+            ?>
+            <div class="col-lg-6">
+              <!-- Basic Card Example -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Daftar <?= $kate['kategori']; ?></h6>
                 </div>
-                <div class="card-body">
-                  <?= $infoweb[0]["deskripsi_web"]; ?>
+                <div class="card-body p-0">
+                  <table cellpadding="5" width="100%">
+                    <tr class="bg-primary text-white">
+                      <th style="text-align: center;">No</th>
+                      <th>Nama Kuliner</th>
+                      <th style="padding: 0 25px 0 25px;">Harga</th>
+                    </tr>
+                    <?php
+                    $no = 1;
+                     
+                    if($jlh_kuliner == 0) : ?>
+                    <tr>
+                      <td colspan="4" class="text-center">Data Not Available</td>
+                    </tr>
+                    <?php else: ?>
+                    <?php foreach( $kuliners as $kuliner): ?>
+                    <tr>
+                      <td class="text-center font-weight-bold"><?= $no; ?></td>
+                      <td style="padding: 6px 50px 6px 10px;"><?= $kuliner["nama_kuliner"]; ?></td>
+                      <td style="padding: 0 25px 0 25px;">Rp <?= $kuliner["harga_kuliner"]; ?></td>
+                    </tr>
+                    <?php $no++; ?>
+                    <?php endforeach; ?>
+                    <?php endif; ?>
+                  </table>
                 </div>
               </div>
             </div>
+            <?php endforeach; ?>
           </div>
-
         </div>
         <!-- /.container-fluid -->
 
