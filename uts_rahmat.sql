@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Jun 2023 pada 17.53
+-- Waktu pembuatan: 05 Jun 2023 pada 16.02
 -- Versi server: 10.4.25-MariaDB
 -- Versi PHP: 8.1.10
 
@@ -63,6 +63,15 @@ CREATE TABLE `tabel_kategori` (
   `kategori` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `tabel_kategori`
+--
+
+INSERT INTO `tabel_kategori` (`id`, `kategori`) VALUES
+(15, 'Makanan'),
+(16, 'Minuman'),
+(17, 'Snacks');
+
 -- --------------------------------------------------------
 
 --
@@ -75,6 +84,16 @@ CREATE TABLE `tabel_kuliner` (
   `nama` varchar(50) NOT NULL,
   `harga` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tabel_kuliner`
+--
+
+INSERT INTO `tabel_kuliner` (`id`, `id_kategori`, `nama`, `harga`) VALUES
+(69, 15, 'Ayam Geprek', 9000),
+(70, 16, 'Jus Buah Jeruk', 8000),
+(71, 15, 'Mie Gacoan', 8000),
+(72, 16, 'Jus Jambu Biji', 9000);
 
 -- --------------------------------------------------------
 
@@ -151,13 +170,13 @@ ALTER TABLE `tabel_info_web`
 -- AUTO_INCREMENT untuk tabel `tabel_kategori`
 --
 ALTER TABLE `tabel_kategori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `tabel_kuliner`
 --
 ALTER TABLE `tabel_kuliner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT untuk tabel `tabel_user`
