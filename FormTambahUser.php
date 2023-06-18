@@ -4,15 +4,15 @@ require 'koneksi.php';
 
 if( isset( $_POST['submit'])){
    
-   if (tambahKategori($_POST) > 0 ) {
+   if (tambahUser($_POST) > 0 ) {
       echo "<script>
-              alert('Kategori ".$_POST['kategori']." Berhasil Ditambahkan!');
-              document.location.href = 'list_kategori.php';
+              alert('User ".$_POST['nama']." Berhasil Ditambahkan!');
+              document.location.href = 'list_user.php';
           </script>";
   } else {
       echo "<script>
           alert('Data gagal ditambahkan!');
-          document.location.href = 'list_kategori.php';
+          document.location.href = 'list_user.php';
       </script>";
   }     
 }
@@ -31,7 +31,7 @@ if( isset( $_POST['submit'])){
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Tambah Kategori - Admin Pages</title>
+  <title>Tambah User - Admin Pages</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -100,32 +100,31 @@ if( isset( $_POST['submit'])){
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
           aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-stream"></i>
           <span>Kategori</span>
         </a>
-        <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities"
-          data-parent="#accordionSidebar">
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item bg-hoper" href="FormTambahKategori.php">Tambah Kategori</a>
+            <a class="collapse-item" href="FormTambahKategori.php">Tambah Kategori</a>
             <a class="collapse-item" href="list_kategori.php">List Kategori</a>
           </div>
         </div>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true"
           aria-controls="collapseUser">
           <i class="fas fa-users-cog"></i>
           <span>Data User</span>
         </a>
-        <div id="collapseUser" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div id="collapseUser" class="collapse show" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="FormTambahUser.php">Tambah User</a>
+            <a class="collapse-item bg-hoper" href="FormTambahUser.php">Tambah User</a>
             <a class="collapse-item" href="list_User.php">List User</a>
           </div>
         </div>
@@ -173,7 +172,7 @@ if( isset( $_POST['submit'])){
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-center mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Tambah Kategori</h1>
+            <h1 class="h3 mb-0 text-gray-800">Tambah User</h1>
           </div>
 
           <div class="row d-flex justify-content-center">
@@ -181,12 +180,16 @@ if( isset( $_POST['submit'])){
               <!-- Default Card Example -->
               <div class="card mb-4">
                 <div class="card-header text-center">
-                  Data Kategori
+                  Data User
                 </div>
                 <div class="card-body">
                   <form action="" method="post">
                     <div class="mb-3">
-                      <input type="text" name="kategori" id="kategori" placeholder="Type here . . . ."
+                      <input type="text" name="nama" id="nama" placeholder="Masukkan Nama" class="form-control"
+                        autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                      <input type="password" name="password" id="password" placeholder="Masukkan password"
                         class="form-control" autocomplete="off" required>
                     </div>
                     <div class="mb-3">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Jun 2023 pada 16.02
+-- Waktu pembuatan: 18 Jun 2023 pada 17.35
 -- Versi server: 10.4.25-MariaDB
 -- Versi PHP: 8.1.10
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `uts_rahmat`
+-- Database: `db_project_akhir`
 --
 
 -- --------------------------------------------------------
@@ -42,15 +42,18 @@ CREATE TABLE `pesanan` (
 
 CREATE TABLE `tabel_info_web` (
   `id` int(11) NOT NULL,
-  `deskripsi_web` varchar(200) NOT NULL
+  `judul` varchar(50) NOT NULL,
+  `deskripsi_web` text NOT NULL,
+  `waktu` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `tabel_info_web`
 --
 
-INSERT INTO `tabel_info_web` (`id`, `deskripsi_web`) VALUES
-(1, 'Website ini adalah simulsi menampilkan menu makanan, minuman, dan sebagai bahan uts pada tanggal 03 Mei 2023');
+INSERT INTO `tabel_info_web` (`id`, `judul`, `deskripsi_web`, `waktu`) VALUES
+(6, 'Libur Semester Genap', 'Libur selama 2 minggu dan masuk kembali seperti biasa', '2023-06-18 21:46:42'),
+(7, 'Perubahan UU Konoha', 'Perurbahan akan dilakukan dengan melakukan sudy banding dengan beberapa saksi dan golongan yang dapat membantu proses filterasi dan meminimalisir kejadian seperti yang terjadipada tahun 198989jgdfgkgjfgkghsjgkhjfhgskgsf', '2023-06-18 21:39:36');
 
 -- --------------------------------------------------------
 
@@ -70,7 +73,8 @@ CREATE TABLE `tabel_kategori` (
 INSERT INTO `tabel_kategori` (`id`, `kategori`) VALUES
 (15, 'Makanan'),
 (16, 'Minuman'),
-(17, 'Snacks');
+(17, 'Snacks'),
+(18, 'Seafood');
 
 -- --------------------------------------------------------
 
@@ -93,7 +97,8 @@ INSERT INTO `tabel_kuliner` (`id`, `id_kategori`, `nama`, `harga`) VALUES
 (69, 15, 'Ayam Geprek', 9000),
 (70, 16, 'Jus Buah Jeruk', 8000),
 (71, 15, 'Mie Gacoan', 8000),
-(72, 16, 'Jus Jambu Biji', 9000);
+(72, 16, 'Jus Jambu Biji', 9000),
+(73, 17, 'Yah', 2000000);
 
 -- --------------------------------------------------------
 
@@ -103,16 +108,19 @@ INSERT INTO `tabel_kuliner` (`id`, `id_kategori`, `nama`, `harga`) VALUES
 
 CREATE TABLE `tabel_user` (
   `id` int(11) NOT NULL,
-  `nama_user` varchar(25) NOT NULL
+  `nama_user` varchar(25) NOT NULL,
+  `username` varchar(25) NOT NULL,
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `tabel_user`
 --
 
-INSERT INTO `tabel_user` (`id`, `nama_user`) VALUES
-(1, 'Rahmat Hidayat Lubis'),
-(2, 'Anies');
+INSERT INTO `tabel_user` (`id`, `nama_user`, `username`, `password`) VALUES
+(3, 'Rahmat Hidayat Lubis', 'Math.bis', 'jukkk'),
+(4, 'Diajeng Puspa Wahyuni', 'puspa', 'ayolahahhah'),
+(14, 'Muhammad alfariqo', 'muhammad648f', 'riqooo');
 
 --
 -- Indexes for dumped tables
@@ -164,25 +172,25 @@ ALTER TABLE `pesanan`
 -- AUTO_INCREMENT untuk tabel `tabel_info_web`
 --
 ALTER TABLE `tabel_info_web`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `tabel_kategori`
 --
 ALTER TABLE `tabel_kategori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `tabel_kuliner`
 --
 ALTER TABLE `tabel_kuliner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT untuk tabel `tabel_user`
 --
 ALTER TABLE `tabel_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

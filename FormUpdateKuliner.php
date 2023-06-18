@@ -70,7 +70,7 @@ if( isset($_POST["update"]) ){
         <?php
                 $user = query("SELECT nama_user FROM tabel_user")[0];
                 ?>
-        <div class="sidebar-brand-text mx-3 text-truncate"><?= $user["nama_user"]; ?></div>
+        <div class="sidebar-brand-text mx-3 text-truncate"><?= $user["nama_user"] ?></div>
       </a>
 
       <!-- Divider -->
@@ -396,25 +396,25 @@ if( isset($_POST["update"]) ){
                 </div>
                 <div class="card-body">
                   <form id="myForm" action="" method="post">
-                    <input type="hidden" name="id" value="<?= $kuliner['id_kuliner']; ?>">
+                    <input type="hidden" name="id" value="<?= $kuliner['id_kuliner'] ?>">
                     <div class="mb-3">
                       <input type="text" name="nama" id="nama" placeholder="Masukkan nama" class="form-control"
-                        value="<?= $kuliner['nama_kuliner']; ?>" autocomplete="off" required>
+                        value="<?= $kuliner['nama_kuliner'] ?>" autocomplete="off" required>
                     </div>
                     <div class="mb-3">
                       <?php
                       $getKat = $kuliner['id_kategori'];
                       $categories = query("SELECT * FROM tabel_kategori WHERE id != '$getKat'"); ?>
                       <select name="kategori" id="kategori" class="form-control">
-                        <option value="<?= $kuliner['id_kategori']; ?>" selected><?= $kuliner['kategori']; ?></option>
+                        <option value="<?= $kuliner['id_kategori'] ?>" selected><?= $kuliner['kategori'] ?></option>
                         <?php foreach($categories AS $kategori) : ?>
-                        <option value="<?= $kategori['id']; ?>"><?= $kategori['kategori']; ?></option>
+                        <option value="<?= $kategori['id'] ?>"><?= $kategori['kategori'] ?></option>
                         <?php endforeach; ?>
                       </select>
                     </div>
                     <div class="mb-4">
                       <input type="text" name="harga" id="harga" placeholder="Masukkan harga" class="form-control"
-                        value="<?= $kuliner['harga_kuliner']; ?>" autocomplete="off" required>
+                        value="<?= $kuliner['harga_kuliner'] ?>" autocomplete="off" required>
                     </div>
                     <div class="mb-3">
                       <button type="submit" name="update" class="btn btn-primary btn-block rounded-0">Update</button>

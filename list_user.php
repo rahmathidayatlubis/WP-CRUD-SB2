@@ -2,10 +2,26 @@
 
 require 'koneksi.php';
 
-$kategories = query("SELECT id AS id_kategori, kategori FROM tabel_kategori ORDER BY id ASC");
+$users = query("SELECT * FROM tabel_user");
 
-$jlh_kategori = count($kategories);
 
+if( isset($_POST['update']) ){
+  if(updateUser($_POST) > 0){
+    echo "
+          <script>
+              alert('Data USER berhasil diubah!');
+              document.location.href = 'list_user.php';
+          </script>
+      ";
+  } else {
+      echo "
+      <script>
+          alert('Data USER gagal diubah!');
+          document.location.href = 'list_user.php';
+      </script>
+      ";
+  }
+}
 
 ?>
 
@@ -21,7 +37,7 @@ $jlh_kategori = count($kategories);
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>List Kategori - Admin Pages</title>
+  <title>List User - Admin Pages</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -90,33 +106,35 @@ $jlh_kategori = count($kategories);
           </li>
 
           <!-- Nav Item - Utilities Collapse Menu -->
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
               aria-expanded="true" aria-controls="collapseUtilities">
               <i class="fas fa-stream"></i>
               <span>Kategori</span>
             </a>
-            <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities"
+            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
               data-parent="#accordionSidebar">
               <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Custom Utilities:</h6>
                 <a class="collapse-item" href="FormTambahKategori.php">Tambah Kategori</a>
-                <a class="collapse-item bg-hoper" href="list_kategori.php">List Kategori</a>
+                <a class="collapse-item" href="list_kategori.php">List Kategori</a>
               </div>
             </div>
           </li>
 
-          <li class="nav-item">
+          <!-- Nav Item - Utilities Collapse Menu -->
+          <li class="nav-item active">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
               aria-expanded="true" aria-controls="collapseUser">
               <i class="fas fa-users-cog"></i>
               <span>Data User</span>
             </a>
-            <div id="collapseUser" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div id="collapseUser" class="collapse show" aria-labelledby="headingUtilities"
+              data-parent="#accordionSidebar">
               <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Custom Utilities:</h6>
                 <a class="collapse-item" href="FormTambahUser.php">Tambah User</a>
-                <a class="collapse-item" href="list_User.php">List User</a>
+                <a class="collapse-item bg-hoper" href="list_User.php">List User</a>
               </div>
             </div>
           </li>
@@ -164,7 +182,7 @@ $jlh_kategori = count($kategories);
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">List Katagori</h1>
+            <h1 class="h3 mb-0 text-gray-800">List User</h1>
           </div>
 
           <div class="row">
@@ -172,39 +190,75 @@ $jlh_kategori = count($kategories);
               <!-- Basic Card Example -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Daftar Kategori</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Daftar User</h6>
                 </div>
                 <div class="card-body p-0">
                   <table cellpadding="5" width="100%">
                     <tr class="bg-primary text-white">
                       <th class="text-center">No</th>
-                      <th>Jenis Kategori</th>
+                      <th>Nama</th>
+                      <th>Username</th>
+                      <th style="padding: 0 25px 0 25px;">Password</th>
                       <th class="text-center">Aksi</th>
                     </tr>
                     <?php
                      $no = 1;
-                     if($jlh_kategori == 0) : ?>
-                    <tr>
-                      <td colspan="5" class="text-center">Data Not Available</td>
-                    </tr>
-                    <?php else: ?>
-                    <?php foreach( $kategories as $kategori): ?>
+                     foreach( $users as $user): ?>
                     <tr>
                       <td class="text-center font-weight-bold"><?= $no ?></td>
-                      <td style="padding: 6px 50px 6px 10px;"><?= $kategori["kategori"] ?></td>
+                      <td style="padding: 6px 50px 6px 10px;"><?= $user["nama_user"] ?></td>
+                      <td style="padding: 6px 50px 6px 10px;"><?= $user["username"] ?></td>
+                      <td style="padding: 0 25px 0 25px;"><?= $user["password"] ?></td>
                       <td class="text-center">
-                        <a href="FormUpdateKategori.php?id=<?= $kategori['id_kategori'] ?>" class="btn btn-warning">
+                        <a href="#" class="btn btn-warning" data-toggle="modal"
+                          data-target="#editUser<?= $user['id'] ?>">
                           <i class="fas fa-edit"></i>
                         </a>
-                        <a href="delete_data.php?id=<?= $kategori['id_kategori'] ?>&act=kategori" class="btn btn-danger"
-                          onclick="return confirm('Yakin Menghapus Kategori <?= $kategori['kategori']; ?> ?');">
+                        <a href="delete_data.php?id=<?= $user['id'] ?>&act=user" class="btn btn-danger"
+                          onclick="return confirm('Yakin Menghapus <?= $user['nama_user']; ?> ?');">
                           <i class="fas fa-trash"></i>
                         </a>
                       </td>
                     </tr>
+
+                    <!-- modal edit user -->
+                    <div class="modal fade" id="editUser<?= $user['id'] ?>" tabindex="-2" role="dialog"
+                      aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <form id="editUser" action="" method="post">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Ubah Data User</h5>
+                              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <input type="hidden" name="id" value="<?= $user['id'] ?>">
+                              <div class="mb-3">
+                                <input type="text" name="nama" id="nama" placeholder="Masukkan nama"
+                                  class="form-control" value="<?= $user['nama_user'] ?>" autocomplete="off" required>
+                              </div>
+                              <div class="mb-4">
+                                <input type="text" name="username" id="username" placeholder="Masukkan username"
+                                  class="form-control" value="<?= $user['username'] ?>" autocomplete="off" required>
+                              </div>
+                              <div class="mb-4">
+                                <input type="password" name="password" id="password" placeholder="Masukkan password"
+                                  class="form-control" value="<?= $user['password'] ?>" autocomplete="off" required>
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                              <button type="submit" name="update" class="btn btn-success" href="#">Simpan
+                                Perubahan</button>
+                            </div>
+                        </form>
+                      </div>
+                    </div>
+
                     <?php $no++; ?>
                     <?php endforeach; ?>
-                    <?php endif; ?>
                   </table>
                 </div>
               </div>
@@ -231,6 +285,7 @@ $jlh_kategori = count($kategories);
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+
 
   <!-- Logout Modal-->
   <?php include './Component/ModalLogout.php'; ?>

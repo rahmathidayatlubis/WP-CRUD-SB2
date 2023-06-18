@@ -64,7 +64,7 @@ if( isset($_POST["update"]) ){
         <?php
          $user = query("SELECT nama_user FROM tabel_user")[0];
          ?>
-        <div class="sidebar-brand-text mx-3 text-truncate"><?= $user["nama_user"]; ?></div>
+        <div class="sidebar-brand-text mx-3 text-truncate"><?= $user["nama_user"] ?></div>
       </a>
 
       <!-- Divider -->
@@ -394,10 +394,10 @@ if( isset($_POST["update"]) ){
                   $id = $_GET['id'];
                   $kategori = query("SELECT * FROM tabel_kategori WHERE id = $id")[0]; ?>
                   <form action="" method="post">
-                    <input type="hidden" name="id" value="<?= $kategori['id']; ?>">
+                    <input type="hidden" name="id" value="<?= $kategori['id'] ?>">
                     <div class="mb-3">
                       <input type="text" name="kategori" id="kategori" placeholder="Type here . . . ."
-                        class="form-control" autocomplete="off" value="<?= $kategori['kategori']; ?>" required>
+                        class="form-control" autocomplete="off" value="<?= $kategori['kategori'] ?>" required>
                     </div>
                     <div class="mb-3">
                       <button type="submit" name="update" class="btn btn-success btn-block rounded-0">Submit
