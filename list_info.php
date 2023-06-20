@@ -60,7 +60,7 @@ if( isset($_POST['update']) ){
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -68,7 +68,7 @@ if( isset($_POST['update']) ){
         <!-- User Aktif -->
         <?php include './Component/UserAktif.php'; ?>
 
-        <div class="sidebar-brand-text mx-3 text-truncate""><?= $user["nama_user"] ?></div>
+        <div class="sidebar-brand-text mx-3 text-truncate""><?= $user["username"] ?></div>
             </a>
 
             <!-- Divider -->

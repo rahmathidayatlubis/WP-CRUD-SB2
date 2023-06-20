@@ -44,7 +44,7 @@ $jlh_kategori = count($kategories);
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -52,7 +52,7 @@ $jlh_kategori = count($kategories);
         <!-- User Aktif -->
         <?php include './Component/UserAktif.php'; ?>
 
-        <div class="sidebar-brand-text mx-3 text-truncate""><?= $user["nama_user"] ?></div>
+        <div class="sidebar-brand-text mx-3 text-truncate""><?= $user["username"] ?></div>
             </a>
 
             <!-- Divider -->
@@ -197,7 +197,7 @@ $jlh_kategori = count($kategories);
                           <i class="fas fa-edit"></i>
                         </a>
                         <a href="delete_data.php?id=<?= $kategori['id_kategori'] ?>&act=kategori" class="btn btn-danger"
-                          onclick="return confirm('Yakin Menghapus Kategori <?= $kategori['kategori']; ?> ?');">
+                          onclick="return confirm('Yakin Menghapus Kategori <?= $kategori['kategori'] ?> ? Semua Kuliner Dengan Kategori <?= $kategori['kategori'] ?> Akan Dihapus');">
                           <i class="fas fa-trash"></i>
                         </a>
                       </td>

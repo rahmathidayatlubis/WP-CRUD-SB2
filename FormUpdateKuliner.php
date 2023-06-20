@@ -63,14 +63,15 @@ if( isset($_POST["update"]) ){
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <?php
-                $user = query("SELECT nama_user FROM tabel_user")[0];
-                ?>
-        <div class="sidebar-brand-text mx-3 text-truncate"><?= $user["nama_user"] ?></div>
+
+        <!-- User Aktif -->
+        <?php include './Component/UserAktif.php'; ?>
+
+        <div class="sidebar-brand-text mx-3 text-truncate"><?= $user["username"] ?></div>
       </a>
 
       <!-- Divider -->
@@ -95,14 +96,14 @@ if( isset($_POST["update"]) ){
       <li class="nav-item active">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
           aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-utensils"></i>
           <span>Data Kuliner</span>
         </a>
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Components:</h6>
             <a class="collapse-item" href="FormTambahKuliner.php">Tambah Kuliner</a>
-            <a class="collapse-item" href="list_kuliner.php">List Kuliner</a>
+            <a class="collapse-item bg-hoper" href="list_kuliner.php">List Kuliner</a>
           </div>
         </div>
       </li>
@@ -111,7 +112,7 @@ if( isset($_POST["update"]) ){
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
           aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
+          <i class="fas fa-stream"></i>
           <span>Kategori</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -123,47 +124,35 @@ if( isset($_POST["update"]) ){
         </div>
       </li>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Addons
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-          aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true"
+          aria-controls="collapseUser">
+          <i class="fas fa-users-cog"></i>
+          <span>Data User</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapseUser" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="#">Login</a>
-            <a class="collapse-item" href="#">Register</a>
-            <a class="collapse-item" href="#">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="#">404 Page</a>
-            <a class="collapse-item" href="#">Blank Page</a>
+            <h6 class="collapse-header">Custom Utilities:</h6>
+            <a class="collapse-item" href="FormTambahUser.php">Tambah User</a>
+            <a class="collapse-item" href="list_User.php">List User</a>
           </div>
         </div>
       </li>
 
-      <!-- Nav Item - Charts -->
+      <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>
-
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInfoWeb"
+          aria-expanded="true" aria-controls="collapseInfoWeb">
+          <i class="fas fa-comments"></i>
+          <span>Data Info Web</span>
+        </a>
+        <div id="collapseInfoWeb" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Custom Utilities:</h6>
+            <a class="collapse-item" href="FormTambahInfo.php">Tambah Info Web</a>
+            <a class="collapse-item" href="list_Info.php">List Info Web</a>
+          </div>
+        </div>
       </li>
 
       <!-- Divider -->

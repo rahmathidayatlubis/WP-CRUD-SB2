@@ -55,7 +55,7 @@ $jlh_info = count($infoweb);
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -63,7 +63,7 @@ $jlh_info = count($infoweb);
         <!-- User Aktif -->
         <?php include './Component/UserAktif.php'; ?>
 
-        <div class="sidebar-brand-text mx-3 text-truncate"><?= $user["nama_user"] ?></div>
+        <div class="sidebar-brand-text mx-3 text-truncate"><?= $user["username"] ?></div>
       </a>
 
       <!-- Divider -->
@@ -260,13 +260,10 @@ $jlh_info = count($infoweb);
                 <div class="card-header font-weight-bold">
                   INFORMASI WEBSITE
                 </div>
-                <div class="card-body px-2 pt-2 pb-0">
+                <div class="card-body">
                   <?php foreach($ingfo AS $infoWeb) : ?>
-                  <div class="card mb-2">
-                    <div class="card-body text-truncate">
-                      <?= $infoWeb["deskripsi_web"] ?>
-                    </div>
-                  </div>
+                  <p class="text-truncate"><?= $infoWeb["deskripsi_web"] ?></p>
+                  <hr class="sidebar-divider">
                   <?php endforeach; ?>
                 </div>
                 <a href="list_info.php" class="ml-auto mr-3 mb-1 font-weight-bold"> . . . Lihat Detail</a>

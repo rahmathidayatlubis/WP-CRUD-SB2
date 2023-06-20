@@ -60,7 +60,7 @@ if( isset($_POST['update']) ){
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -68,7 +68,7 @@ if( isset($_POST['update']) ){
         <!-- User Aktif -->
         <?php include './Component/UserAktif.php'; ?>
 
-        <div class="sidebar-brand-text mx-3 text-truncate""><?= $user["nama_user"] ?></div>
+        <div class="sidebar-brand-text mx-3 text-truncate""><?= $user["username"] ?></div>
             </a>
 
             <!-- Divider -->
@@ -204,12 +204,12 @@ if( isset($_POST['update']) ){
                     <?php
                      $no = 1;
                      foreach( $users as $user): ?>
-                    <tr>
+                    <tr class="p-4">
                       <td class="text-center font-weight-bold"><?= $no ?></td>
                       <td style="padding: 6px 50px 6px 10px;"><?= $user["nama_user"] ?></td>
                       <td style="padding: 6px 50px 6px 10px;"><?= $user["username"] ?></td>
                       <td style="padding: 0 25px 0 25px;"><?= $user["password"] ?></td>
-                      <td class="text-center">
+                      <td class="text-centers">
                         <a href="#" class="btn btn-warning" data-toggle="modal"
                           data-target="#editUser<?= $user['id'] ?>">
                           <i class="fas fa-edit"></i>
@@ -243,9 +243,17 @@ if( isset($_POST['update']) ){
                                 <input type="text" name="username" id="username" placeholder="Masukkan username"
                                   class="form-control" value="<?= $user['username'] ?>" autocomplete="off" required>
                               </div>
-                              <div class="mb-4">
+                              <div class="mb-3">
                                 <input type="password" name="password" id="password" placeholder="Masukkan password"
                                   class="form-control" value="<?= $user['password'] ?>" autocomplete="off" required>
+                              </div>
+                              <div class="form-group">
+                                <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" id="togglePassword">
+                                  <label class="form-check-label" for="togglePassword">
+                                    Lihat Password
+                                  </label>
+                                </div>
                               </div>
                             </div>
                             <div class="modal-footer">
@@ -306,6 +314,24 @@ if( isset($_POST['update']) ){
   <!-- Page level custom scripts -->
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
+
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const togglePassword = document.querySelector('#togglePassword');
+    const passwordInput = document.querySelector('#password');
+
+    togglePassword.addEventListener('click', () => {
+      const passwordFieldType = passwordInput.getAttribute('type');
+
+      if (passwordFieldType === 'password') {
+        passwordInput.setAttribute('type', 'text');
+      } else {
+        passwordInput.setAttribute('type', 'password');
+      }
+    });
+  });
+  </script>
 
 </body>
 

@@ -42,7 +42,15 @@ if( isset( $_POST['submit'])){
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/index.css" rel="stylesheet">
+  <script>
+  function focusFunction() {
+    document.getElementById("nama").focus();
+  }
 
+  window.onload = function() {
+    focusFunction();
+  };
+  </script>
 </head>
 
 <body id="page-top">
@@ -54,7 +62,7 @@ if( isset( $_POST['submit'])){
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -62,7 +70,7 @@ if( isset( $_POST['submit'])){
         <!-- User Aktif -->
         <?php include './Component/UserAktif.php'; ?>
 
-        <div class="sidebar-brand-text mx-3 text-truncate"><?= $user["nama_user"] ?></div>
+        <div class="sidebar-brand-text mx-3 text-truncate"><?= $user["username"] ?></div>
       </a>
 
       <!-- Divider -->
