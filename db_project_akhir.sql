@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 18 Jun 2023 pada 17.35
+-- Waktu pembuatan: 20 Jun 2023 pada 08.09
 -- Versi server: 10.4.25-MariaDB
 -- Versi PHP: 8.1.10
 
@@ -53,7 +53,8 @@ CREATE TABLE `tabel_info_web` (
 
 INSERT INTO `tabel_info_web` (`id`, `judul`, `deskripsi_web`, `waktu`) VALUES
 (6, 'Libur Semester Genap', 'Libur selama 2 minggu dan masuk kembali seperti biasa', '2023-06-18 21:46:42'),
-(7, 'Perubahan UU Konoha', 'Perurbahan akan dilakukan dengan melakukan sudy banding dengan beberapa saksi dan golongan yang dapat membantu proses filterasi dan meminimalisir kejadian seperti yang terjadipada tahun 198989jgdfgkgjfgkghsjgkhjfhgskgsf', '2023-06-18 21:39:36');
+(7, 'Perubahan UU Konoha', 'Perurbahan akan dilakukan dengan melakukan sudy banding dengan beberapa saksi dan golongan yang dapat membantu proses filterasi dan meminimalisir kejadian seperti yang terjadipada tahun 198989jgdfgkgjfgkghsjgkhjfhgskgsf', '2023-06-18 21:39:36'),
+(12, 'Peralihan Jalan Hidup', 'Menurut ideologi raja pertama, jalan hidup manusia ditentukan seberapa besar tantangannya', '2023-06-20 09:46:05');
 
 -- --------------------------------------------------------
 
@@ -71,10 +72,9 @@ CREATE TABLE `tabel_kategori` (
 --
 
 INSERT INTO `tabel_kategori` (`id`, `kategori`) VALUES
-(15, 'Makanan'),
-(16, 'Minuman'),
-(17, 'Snacks'),
-(18, 'Seafood');
+(21, 'Makanan'),
+(22, 'Minuman'),
+(23, 'Seafood');
 
 -- --------------------------------------------------------
 
@@ -94,11 +94,10 @@ CREATE TABLE `tabel_kuliner` (
 --
 
 INSERT INTO `tabel_kuliner` (`id`, `id_kategori`, `nama`, `harga`) VALUES
-(69, 15, 'Ayam Geprek', 9000),
-(70, 16, 'Jus Buah Jeruk', 8000),
-(71, 15, 'Mie Gacoan', 8000),
-(72, 16, 'Jus Jambu Biji', 9000),
-(73, 17, 'Yah', 2000000);
+(76, 21, 'Ayam Rendang', 15000),
+(77, 21, 'Bebek Carok', 20000),
+(78, 22, 'Jus Jeruk', 6000),
+(79, 22, 'Teh Maniss', 5000);
 
 -- --------------------------------------------------------
 
@@ -118,9 +117,11 @@ CREATE TABLE `tabel_user` (
 --
 
 INSERT INTO `tabel_user` (`id`, `nama_user`, `username`, `password`) VALUES
-(3, 'Rahmat Hidayat Lubis', 'Math.bis', 'jukkk'),
+(3, 'Rahmat Hidayat Lubis', 'Math.bis', 'merdekaaaa55'),
 (4, 'Diajeng Puspa Wahyuni', 'puspa', 'ayolahahhah'),
-(14, 'Muhammad alfariqo', 'muhammad648f', 'riqooo');
+(14, 'Muhammad Al Fariqo', 'muhammad648f', 'riqooo'),
+(15, 'Zainul Adensyah', 'zainul6491', 'syahhh'),
+(16, 'Cendana Head Marketing', 'Dorrr', 'tomi678');
 
 --
 -- Indexes for dumped tables
@@ -172,25 +173,25 @@ ALTER TABLE `pesanan`
 -- AUTO_INCREMENT untuk tabel `tabel_info_web`
 --
 ALTER TABLE `tabel_info_web`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `tabel_kategori`
 --
 ALTER TABLE `tabel_kategori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT untuk tabel `tabel_kuliner`
 --
 ALTER TABLE `tabel_kuliner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT untuk tabel `tabel_user`
 --
 ALTER TABLE `tabel_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
